@@ -1,0 +1,43 @@
+services:
+
+  cloudforge-db:
+    image: postgres:15
+    container_name: cloudforge-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: cloudforge
+    volumes:
+      - cloudforge_db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  auth-service:
+    build:
+      context: ./services/auth-service
+    container_name: cloudforge-auth
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@cloudforge-db:5432/cloudforge
+      SECRET_KEY: your_super_secret_key
+      ALGORITHM: HS256
+      ACCESS_TOKEN_EXPIRE_MINUTES: 60
+    depends_on:
+      - cloudforge-db
+    ports:
+      - "8001:8000"
+
+  user-service:
+    build:
+      context: ./services/user-service
+    container_name: cloudforge-user
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@cloudforge-db:5432/cloudforge
+      SECRET_KEY: your_super_secret_key
+      ALGORITHM: HS256
+    depends_on:
+      - cloudforge-db
+    ports:
+      - "8002:8000"
+
+volumes:
+  cloudforge_db_data:
