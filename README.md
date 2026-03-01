@@ -36,16 +36,19 @@ Shared across services
 
 🔐 Authentication Flow
 Client
-  │
-  ├── Login → Auth Service
-  │        → Returns JWT
-  │
-  └── Request → User Service
-           │
-           └── Internal HTTP Call → Auth Service (/validate-token)
-                        │
-                        └── Validates JWT
-
+│
+├── Login Request
+│ │
+│ └── Auth Service
+│ └── Returns JWT
+│
+└── Protected Request (with JWT)
+│
+└── User Service
+│
+└── Internal HTTP Call
+→ Auth Service (/validate-token)
+└── Validates JWT
 Unlike typical demo projects, JWT validation is centralized inside the Auth Service — preventing logic duplication across services.
 
 🛠️ Tech Stack
