@@ -34,22 +34,24 @@ Persistent Docker volume
 
 Shared across services
 
-🔐 Authentication Flow
-Client
-│
-├── Login Request
-│ │
-│ └── Auth Service
-│ └── Returns JWT
-│
-└── Protected Request (with JWT)
-│
-└── User Service
-│
-└── Internal HTTP Call
-→ Auth Service (/validate-token)
-└── Validates JWT
-Unlike typical demo projects, JWT validation is centralized inside the Auth Service — preventing logic duplication across services.
+## 🔐 Authentication Flow
+
+<div style="font-family: monospace; line-height: 1.6;">
+
+Client  
+&nbsp;&nbsp;├── Login Request  
+&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── Auth Service  
+&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Returns JWT  
+
+&nbsp;&nbsp;└── Protected Request (with JWT)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── User Service  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Internal HTTP Call  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ Auth Service (/validate-token)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Validates JWT  
+
+</div>
+
+JWT validation is centralized inside the Auth Service — preventing authentication logic duplication across services.
 
 🛠️ Tech Stack
 
@@ -67,21 +69,23 @@ Requests (Service-to-service communication)
 
 Pydantic
 
-📂 Project Structure
-cloudforge-microservices/
-│
-├── docker-compose.yml
-├── services/
-│   ├── auth-service/
-│   │   ├── app/
-│   │   ├── Dockerfile
-│   │   └── requirements.txt
-│   │
-│   └── user-service/
-│       ├── app/
-│       ├── Dockerfile
-│       └── requirements.txt
+## 📂 Project Structure
 
+<div style="font-family: monospace; line-height: 1.6;">
+
+cloudforge-microservices/  
+├── docker-compose.yml  
+├── services/  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── auth-service/  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── app/  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── Dockerfile  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── requirements.txt  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── user-service/  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── app/  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── Dockerfile  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── requirements.txt  
+
+</div>
 
 🚀 Running Locally
 1️⃣ Clone the Repository
