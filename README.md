@@ -82,7 +82,7 @@ cloudforge-microservices/
 
 🚀 Running Locally
 1️⃣ Clone the Repository
-git clone https://github.com/YOUR_USERNAME/cloudforge-microservices.git
+git clone https://github.com/Darshan7887/cloudforge-platform.git
 cd cloudforge-microservices
 2️⃣ Start the Services
 docker compose up --build
